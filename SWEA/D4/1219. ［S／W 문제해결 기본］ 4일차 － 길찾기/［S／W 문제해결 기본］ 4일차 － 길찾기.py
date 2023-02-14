@@ -4,7 +4,7 @@ while True:
         # 1-1 초기설정
         T, E = map(int, input().split())  # 정점 V = 100, 간선 E input
         data = list(map(int, input().split()))  # data input
-        arr = [[0] * (101) for _ in range(101)]  # 경로 입력 2차원 배열
+        arr = [[0] * (100) for _ in range(100)]  # 경로 입력 2차원 배열
 
         # 1-2 간선 입력받기
         for i in range(E):
