@@ -3,7 +3,7 @@ dice = [list(map(int, input().split())) for _ in range(n)]
 
 # 1
 # bottom으로 top 찾는 함수
-def direct(bot, i):
+def direction(bot, i):
     top = dice[0][0]
     fin = dice[i].index(bot)  # bottom의 인덱스
     if fin == 0:
@@ -30,12 +30,12 @@ for j in range(6):
     for i in range(n):
         if i == 0:  # 첫번째 i열에서 시작하는 bottom을 구하고, 그 이후에는 갱신되는 bottom값을 사용한다.
             bot = dice[i][j]
-            rlt = [direct(bot, i), bot]
+            rlt = [direction(bot, i), bot]
             new = [x for x in dice[i] if x not in rlt]  # top과 bottom을 제외한 리스트 + max구해서 nums의 해당 인덱스에 넣기
             nums[j] += max(new)
             bot = rlt[0]   # bottom값을 함수로 구한 top 값으로 갱신
         else:
-            rlt = [direct(bot, i), bot]
+            rlt = [direction(bot, i), bot]
             new = [x for x in dice[i] if x not in rlt]
             nums[j] += max(new)
             bot = rlt[0]
