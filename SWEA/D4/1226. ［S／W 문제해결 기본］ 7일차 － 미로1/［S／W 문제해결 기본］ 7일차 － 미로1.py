@@ -21,11 +21,11 @@ def bfs(maze, si, sj, n, ai, aj):
             return 1
 
         # 1-4
-        # 인접 정점(8방향 탐색) queue에 넣기
-        di = [-1, 0, 1, -1, 1, -1, 0, 1]
-        dj = [-1, -1, -1, 0, 0, 1, 1, 1]
+        # 인접 정점(4방향 탐색) queue에 넣기
+        di = [0, -1, 1, 0]
+        dj = [-1, 0, 0, 1]
 
-        for k in range(8):
+        for k in range(4):
             i = ti + di[k]
             j = tj + dj[k]
             if maze[i][j] != 1 and visited[i][j] == 0:  # maze에서 값이 1이 아니고, 방문 x
