@@ -6,7 +6,7 @@ def check(k):
     if k < 10: # 10보다 작으면 x
         return -1
     else:
-        ans = int(kstr[0])  # 크거가 같을때 계속 갱신, 갱신을 하지 않는다면 단조증가x
+        ans = int(kstr[0])  # 크기가 같을때 계속 갱신, 갱신을 하지 않는다면 단조증가x
         for i in range(1, len(kstr)):
             if int(kstr[i]) >= ans:
                 ans = int(kstr[i])
@@ -22,7 +22,7 @@ for tc in range(1, T + 1):
     n = int(input())
 
     a = list(map(int, input().split()))
-    rlt = [] # 단조증가인지 확인한 결과 append 
+    rlt = [] # 단조증가인지 확인한 결과 append
 
     for i in range(n):
         for j in range(i + 1, n):
