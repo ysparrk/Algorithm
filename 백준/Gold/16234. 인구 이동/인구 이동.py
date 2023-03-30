@@ -3,18 +3,17 @@ from collections import deque
 # 1
 # 한 좌표에서의 연합
 def bfs(x, y):
-    # 1-1 초기 설정 
+    # 1-1 초기 설정
     global change
 
     plus = deque([])  # 연합 o 좌표
-    sub = deque([])   # 연합 x 좌표
 
     p, cnt = 0, 1  # 연합 인구, 연합 나라 수
     p += people[x][y]  # 시작점 인구수 담기
     plus.append([x, y])
     queue = deque([(x, y)])  # 시작점 queue에 넣기
-    
-    # 1-2 
+
+    # 1-2
     while queue:
         x, y = queue.popleft()
         visited[x][y] = 1
@@ -30,10 +29,6 @@ def bfs(x, y):
                     plus.append([i, j])   # 연합 좌표 모으기
                     p += people[i][j]     # 인구 수 +
                     cnt += 1              # 나라 +1
-
-                # 2) 연합 불가능
-                elif [i, j] not in sub:
-                    sub.append([i, j])
 
     # 1-3 인구 이동
     if cnt != 1:
