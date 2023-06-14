@@ -10,7 +10,7 @@ def solution(n, s):
     if q == 0:
         answer = [-1]
     elif r == 0:
-        answer = [q for _ in range(n)]
+        answer = [q] * n
     else:
         answer = [q] * (n - r) + [q + 1] * r
         
