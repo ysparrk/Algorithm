@@ -4,7 +4,7 @@ def solution(n, lost, reserve):
     lost.sort()
     reserve.sort()
     
-    # 도난당한 사람 == 여벌 -> 이거 먼저 제거
+    # 도난당한 사람 == 여벌 -> 먼저 제거
     for l in lost:
         if l in reserve:
             n += 1
