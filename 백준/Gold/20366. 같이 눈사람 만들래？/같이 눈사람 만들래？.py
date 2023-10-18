@@ -1,25 +1,30 @@
+# 0. import
 import sys
 input = sys.stdin.readline
+
+# 1. input
 N = int(input())
-snow = list(map(int,input().split()))
-snow.sort()
-diff = 4000000001
+h_lst = list(map(int, input().split()))
+h_lst.sort()
+
+# 2. two pointer
+rlt = sys.maxsize
 for i in range(N-3):
     for j in range(i+3, N):
-        fix = snow[i] + snow[j]
+        snow = h_lst[i] + h_lst[j]
         left, right = i+1, j-1
- 
+
         while left < right:
-            s = snow[left] + snow[right]
-            if abs(s - fix) < diff:
-                diff = abs(s - fix)
-            
-            if s < fix:
+            s = h_lst[left] + h_lst[right]
+            if abs(s - snow) < rlt:
+                rlt = abs(s - snow)
+
+            if s < snow:
                 left += 1
-            elif s > fix:
+            elif s > snow:
                 right -= 1
             else:
                 print(0)
-                sys.exit(0)
- 
-print(diff)
+                exit()
+
+print(rlt)
