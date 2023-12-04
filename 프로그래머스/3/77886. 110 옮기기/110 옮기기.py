@@ -14,17 +14,15 @@ def solution(s):
                 cnt += 1
             else:
                 stack += arr[i]
-      
+
         # 2) stack에서 0 찾기 -> 뒤에 110 붙이기
-        stack = stack[::-1]
-        idx = stack.find('0')
-        
+        idx = stack.rfind('0')
         if idx != -1:
-            rlt = stack[:idx] + cnt * '011' + stack[idx:]
+            rlt = stack[:idx+1] + cnt * '110' + stack[idx+1:]
         
         # 0이 없으면 맨 앞에 넣기
         else:
-            rlt = stack + cnt * '011'
-        answer.append(rlt[::-1])
+            rlt = cnt * '110' + stack
+        answer.append(rlt)
     
     return answer
