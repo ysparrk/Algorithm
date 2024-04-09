@@ -1,47 +1,29 @@
-/*
-1) 0 ~ N까지 누적합을 구해 놓는다
-2) two pointer로 사이 값이 K가 되는 것들을 찾는다
-*/
-
 class Solution {
     public int[] solution(int[] sequence, int k) {
         
         int N = sequence.length;
         
-        // 1. 0 ~ N까지 누적합 만들기
-        int[] sums = new int[N];
-        sums[0] = sequence[0];
-        for (int i = 1; i < N; i++) {
-            sums[i] += (sums[i - 1] + sequence[i]);
-        }
-        
-        // 2. 투포인터
-        int left = 0, right = 0;
-        int rltLeft = 0, rltRight = 0, rltLen = Integer.MAX_VALUE;
-        while (left <= right && right < N) {
-            int tmpSum = sums[right] - sums[left] + sequence[left];  // left ~ right까지 합
-            int tmpLen = right - left + 1; // 수열 길이
-            
-            if (tmpSum == k) {
-                //2-1) k랑 같으면 수열길이 비교
-                if (tmpLen < rltLen) {
-                    rltLeft = left;
-                    rltRight = right;
-                    rltLen = tmpLen;
-                }
-                left++;
-                right++;
-                
-            } else if (tmpSum < k) {
-                //2-2) k보다 작으면 -> 더 더한다
-                right++;
-            } else {
-                //2-3) k보다 크면 -> 왼쪽에서 뺀다
-                left++;
+        //1. 투포인터
+        int end = 0;
+        int tmpSum = 0;
+        int minLen = N;
+        int rltStart = 0, rltEnd = 0;
+        for (int start = 0; start < N; start++) {
+            //1) 시작점에서 최대 값이 k보다 작으면 -> 계속 더하기
+            while (tmpSum < k && end < N) {
+                tmpSum += sequence[end];
+                end += 1;
             }
+            //2) while문 통과 -> k랑 같고, 수열의 길이가 더 작으면 갱신
+            if (tmpSum == k && end - start - 1 < minLen) {
+                rltStart = start;
+                rltEnd = end - 1;
+                minLen = end - start - 1;
+            }
+            tmpSum -= sequence[start];
         }
         
-        int[] answer = {rltLeft, rltRight};
+        int[] answer = {rltStart, rltEnd};
         
         return answer;
     }
