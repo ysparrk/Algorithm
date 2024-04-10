@@ -49,18 +49,18 @@ public class Main {
             for (int j = 0; j < C1; j++) {
                 //i, j에서 브루트포스 시작
                 if (check_0_180(i, j, P2_0)) {
-                    get_size(i, j);
+                    get_size_0_180(i, j);
                 }
                 if (check_0_180(i, j, P2_180)) {
-                    get_size(i, j);
+                    get_size_0_180(i, j);
                 }
 
                 if (check_90_270(i, j, P2_90)) {
-                    get_size(i, j);
+                    get_size_90_270(i, j);
                 }
 
                 if (check_90_270(i, j, P2_270)) {
-                    get_size(i, j);
+                    get_size_90_270(i, j);
                 }
             }
         }
@@ -98,9 +98,17 @@ public class Main {
     }
 
     //4. 액자가 가능한 경우 -> 최소 사이즈 구하기
-    public static void get_size(int x, int y) {
+    //1) 0도, 180도의 퍼즐 확인
+    public static void get_size_0_180(int x, int y) {
         int a = Math.max(R1, x + R2);
         int b = Math.max(C1, y + C2);
+        find_min = Math.min(find_min, a * b);
+    }
+
+    //2) 90도, 270도 퍼즐 확인
+    public static void get_size_90_270(int x, int y) {
+        int a = Math.max(R1, x + C2);
+        int b = Math.max(C1, y + R2);
         find_min = Math.min(find_min, a * b);
     }
 }
