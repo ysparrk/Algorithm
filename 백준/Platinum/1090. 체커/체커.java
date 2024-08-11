@@ -29,20 +29,20 @@ public class Main {
         for (int x : xclst) {
             for (int y : yclst) {
 
-                ArrayList<Integer> dist = new ArrayList<>();
+                int[] dist = new int[N];
 
                 //1) 모이는 점을 (x, y)로 선택 시 모든 체커와의 거리
                 for (int k = 0; k < N; k++) {
-                    dist.add(Math.abs(xclst[k] - x) + Math.abs(yclst[k] - y));
+                    dist[k] = Math.abs(xclst[k] - x) + Math.abs(yclst[k] - y);
                 }
 
                 //2) 정렬
-                Collections.sort(dist);
+                Arrays.sort(dist);
 
                 //3) c개의 체커 -> 최소 횟수 업데이트
                 int tmp = 0;
                 for (int c = 0; c < N; c++) {
-                    tmp += dist.get(c);
+                    tmp += dist[c];
                     rlt[c] = Math.min(rlt[c], tmp);
                 }
             }
