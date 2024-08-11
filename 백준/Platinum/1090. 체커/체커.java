@@ -21,7 +21,7 @@ public class Main {
 
             xclst[i] = Integer.parseInt(st.nextToken());
             yclst[i] = Integer.parseInt(st.nextToken());
-            rlt[i] = -1;  //rlt 배열 초기화
+            rlt[i] = Integer.MAX_VALUE;  //rlt 배열 초기화
         }
 
 
@@ -43,9 +43,7 @@ public class Main {
                 int tmp = 0;
                 for (int c = 0; c < N; c++) {
                     tmp += dist.get(c);
-
-                    if (rlt[c] == -1) rlt[c] = tmp;
-                    else rlt[c] = Math.min(tmp, rlt[c]);
+                    rlt[c] = Math.min(rlt[c], tmp);
                 }
             }
         }
