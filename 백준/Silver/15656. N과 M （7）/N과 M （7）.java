@@ -5,7 +5,6 @@ public class Main {
 
     private static int N, M;
     private static int[] nums, selected;
-    private static boolean[] visited;
     private static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
@@ -16,7 +15,6 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         nums = new int[N];
-        visited = new boolean[N];
         selected = new int[M];
 
         st = new StringTokenizer(br.readLine());
