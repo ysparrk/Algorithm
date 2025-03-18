@@ -1,37 +1,33 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
+import java.io.*;
 public class Main {
-    private int[] getCntArr(String s) {
-        int[] cnt = new int['z'-'a'+1];
-        for (int i = 0; i < s.length(); i++) {
-            cnt[s.charAt(i)-'a']++;
-        }
-        return cnt;
-    }
 
-    private void solution() throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder answer = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         while (true) {
-            String a = br.readLine();
-            if (a == null) break;
-            String b = br.readLine();
+            String A = br.readLine();
+            if (A == null) break;
+            String B = br.readLine();
 
-            int[] cntA = getCntArr(a);
-            int[] cntB = getCntArr(b);
+            int[] cntA = getCnt(A);
+            int[] cntB = getCnt(B);
 
             for (int i = 0; i < cntA.length; i++) {
                 for (int j = 0; j < Math.min(cntA[i], cntB[i]); j++) {
-                    answer.append((char)('a'+i));
+                    sb.append((char) ('a'+ i));
                 }
             }
-            answer.append('\n');
+            sb.append('\n');
         }
-        System.out.print(answer);
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb);
     }
 
-    public static void main(String[] args) throws Exception {
-        new Main().solution();
+    private static int[] getCnt(String str) {
+        int[] tmp = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            tmp[str.charAt(i) - 'a']++;
+        }
+        return tmp;
     }
 }
