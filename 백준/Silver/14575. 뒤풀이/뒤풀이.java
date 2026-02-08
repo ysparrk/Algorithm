@@ -26,7 +26,7 @@ public class Main {
         //2. 이진탐색
         int S = Integer.MAX_VALUE;
         int start = 0;
-        int end = 9999999;
+        int end = 999999;
         while(start <= end) {
             int mid = (start + end) / 2;
 
@@ -47,19 +47,20 @@ public class Main {
     }
 
     private static int isPossible(int num) {
-        int lower = 0, upper = 0;
+        int minDrink = 0;
+        int maxDrintk = 0;
         for(int i=0; i<N; ++i) {
             if(lr[i][0] > num) {
                 return 1;  //S+
             }
 
-            lower += lr[i][0];
-            upper += Math.min(num, lr[i][1]);
+            minDrink += lr[i][0];
+            maxDrintk += Math.min(num, lr[i][1]);
         }
 
-        if(lower <= T && upper >= T) {
+        if(minDrink <= T && maxDrintk >= T) {
             return 0;  //통과
-        } else if (lower > T) {
+        } else if (minDrink > T) {
             return -1; //S-
         } else {
             return 1;  //S+
